@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repair Services - Velocity Vault</title>
+    <link rel="stylesheet" href="../styles/repair.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="tbar">
+        <div class="tlft">
+            <a href="index.html" class="back">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+        <div class="trgt">
+            <div class="help">
+                <i class="fas fa-phone"></i>
+                <span>Service:  +91-9854216589-VELOCITY</span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Home Repair Service</h1>
+        <p>Expert mechanics at your doorstep</p>
+        <div class="live">
+            <div class="puls"></div>
+            <span>Live Tracking Available</span>
+        </div>
+    </header>
+
+    <section class="trak">
+        <div class="maps">
+            <iframe 
+                <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30596698663!2d-74.25987368715491!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1647627817165!5m2!1sen!2sin"
+                width="100%" 
+                height="400" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+        <div class="info">
+            <div class="time">
+                <i class="fas fa-clock"></i>
+                <span>Average Response Time: 30 mins</span>
+            </div>
+            <button class="find">
+                <i class="fas fa-location-arrow"></i>
+                Use Current Location
+            </button>
+        </div>
+    </section>
+
+    <!-- Service Options -->
+    <section class="serv">
+        <h2>Available Services</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-tools"></i>
+                <h3>Basic Repair</h3>
+                <p>Quick fixes and basic maintenance</p>
+                <ul class="list">
+                    <li>Engine Check</li>
+                    <li>Oil Change</li>
+                    <li>Battery Service</li>
+                    <li>Tire Service</li>
+                </ul>
+                <span class="time">1-2 Hours</span>
+                <button class="book">Book Now</button>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-cogs"></i>
+                <h3>Major Repair</h3>
+                <p>Complex repairs and diagnostics</p>
+                <ul class="list">
+                    <li>Engine Repair</li>
+                    <li>Transmission Service</li>
+                    <li>Brake System</li>
+                    <li>Electrical Work</li>
+                </ul>
+                <span class="time">3-4 Hours</span>
+                <button class="book">Book Now</button>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-car"></i>
+                <h3>Full Service</h3>
+                <p>Complete car maintenance</p>
+                <ul class="list">
+                    <li>Full Inspection</li>
+                    <li>Performance Tuning</li>
+                    <li>System Updates</li>
+                    <li>Safety Checks</li>
+                </ul>
+                <span class="time">4-5 Hours</span>
+                <button class="book">Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="form">
+        <h2>Schedule a Home Visit</h2>
+        <form class="fbox">
+            <div class="fgrd">
+                <div class="inpt">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="Your Name">
+                </div>
+                <div class="inpt">
+                    <label>Phone Number</label>
+                    <input type="tel" required placeholder="Your Contact">
+                </div>
+                <div class="inpt">
+                    <label>Service Address</label>
+                    <textarea required placeholder="Enter your address"></textarea>
+                </div>
+                <div class="inpt">
+                    <label>Service Type</label>
+                    <select required>
+                        <option value="">Select Service</option>
+                        <option>Basic Repair</option>
+                        <option>Major Repair</option>
+                        <option>Full Service</option>
+                    </select>
+                </div>
+                <div class="inpt">
+                    <label>Preferred Date</label>
+                    <input type="date" required>
+                </div>
+                <div class="inpt">
+                    <label>Preferred Time</label>
+                    <input type="time" required>
+                </div>
+            </div>
+            <div class="note">
+                <label>Issue Description</label>
+                <textarea placeholder="Describe the problem you're experiencing"></textarea>
+            </div>
+            <button type="submit" class="send">Request Service</button>
+        </form>
+    </section>
+
+    <!-- Emergency Contact -->
+    <div class="emrg">
+        <button class="call">
+            <i class="fas fa-phone"></i>
+            <span>Request Emergency Service</span>
+        </button>
+    </div>
+</body>
+</html> 
