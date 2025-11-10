@@ -85,7 +85,7 @@
                 <div class="service-card" data-service="diagnostic">
                     <i class="fas fa-laptop-code"></i>
                     <h3>Diagnostic Scan</h3>
-                    <p>Complete vehicle health check and diagnostics</p>
+                    <p>Đã hoàn thành quy trình kiểm tra sức khỏe phương tiện</p>
                     <p class="price">From Rs. 3,499</p>
                     <button class="book-service-btn">Book Now</button>
                 </div>
@@ -99,7 +99,7 @@
             <h2>Add New Vehicle</h2>
             <form id="addVehicleForm">
                 <div class="form-group">
-                    <label for="vehicleMake">Make:</label>
+                    <label for="vehicleMake">Cấu tạo:</label>
                     <input type="text" id="vehicleMake" required>
                 </div>
                 <div class="form-group">
@@ -107,16 +107,16 @@
                     <input type="text" id="vehicleModel" required>
                 </div>
                 <div class="form-group">
-                    <label for="vehicleYear">Year:</label>
+                    <label for="vehicleYear">Năm:</label>
                     <input type="number" id="vehicleYear" min="1900" max="2024" required>
                 </div>
                 <div class="form-group">
-                    <label for="vehiclePlate">License Plate:</label>
+                    <label for="vehiclePlate">Biển số xe:</label>
                     <input type="text" id="vehiclePlate" required>
                 </div>
                 <div class="form-buttons">
-                    <button type="submit" class="submit-btn">Add Vehicle</button>
-                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Thêm phương tiện</button>
+                    <button type="button" class="cancel-btn">Hủy</button>
                 </div>
             </form>
         </div>
@@ -128,17 +128,17 @@
             <h2>Schedule Service</h2>
             <form id="bookingForm">
                 <div class="form-group">
-                    <label for="serviceVehicle">Select Vehicle:</label>
+                    <label for="serviceVehicle">Chọn phương tiện:</label>
                     <select id="serviceVehicle" required>
-                        <!-- Vehicles will be added here dynamically -->
+                        <!-- Phương tiện sẽ được thêm vào đây -->
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="serviceDate">Preferred Date:</label>
+                    <label for="serviceDate">Ngày ưu đãi:</label>
                     <input type="date" id="serviceDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="serviceTime">Preferred Time:</label>
+                    <label for="serviceTime">Thời gian ưu đãi:</label>
                     <select id="serviceTime" required>
                         <option value="09:00">09:00 AM</option>
                         <option value="10:00">10:00 AM</option>
@@ -150,12 +150,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="serviceNotes">Additional Notes:</label>
+                    <label for="serviceNotes">Ghi chú thêm:</label>
                     <textarea id="serviceNotes"></textarea>
                 </div>
                 <div class="form-buttons">
-                    <button type="submit" class="submit-btn">Schedule Service</button>
-                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Dịch vụ theo lịch</button>
+                    <button type="button" class="cancel-btn">Hủy</button>
                 </div>
             </form>
         </div>
@@ -233,19 +233,19 @@
             const currentYear = new Date().getFullYear();
             
             if (!formData.make.match(/^[a-zA-Z0-9\s-]+$/)) {
-                errors.push('Make should only contain letters, numbers, spaces, and hyphens');
+                errors.push('Cấu tạo chỉ được bao gồm chữ cái, số, khoảng trắng và dấu nối');
             }
             
             if (!formData.model.match(/^[a-zA-Z0-9\s-]+$/)) {
-                errors.push('Model should only contain letters, numbers, spaces, and hyphens');
+                errors.push('Model chỉ được bao gồm chữ cái, số, khoảng trắng và dấu nối');
             }
             
             if (formData.year < 1900 || formData.year > currentYear + 1) {
-                errors.push(`Year must be between 1900 and ${currentYear + 1}`);
+                errors.push(`Năm phải nằm giữa 1990 và ${currentYear + 1}`);
             }
             
             if (!formData.plate.match(/^[A-Z0-9\s-]+$/)) {
-                errors.push('License plate should only contain uppercase letters, numbers, spaces, and hyphens');
+                errors.push('Biển số xe chỉ được bao gồm chữ cái, số, khoảng trắng và dấu nối');
             }
             
             return errors;
@@ -305,9 +305,9 @@
                 displayVehicles();
                 addVehicleModal.style.display = 'none';
                 addVehicleForm.reset();
-                showNotification('Vehicle added successfully!');
+                showNotification('Phương tiện đã được thêm thành công!');
             } catch (error) {
-                showNotification('Failed to add vehicle. Please try again.', 'error');
+                showNotification('Không thể thêm phương tiện. Hãy thử lại', 'error');
             } finally {
                 setLoading(false);
             }
@@ -329,18 +329,18 @@
                 case 'make':
                 case 'model':
                     if (!value.match(/^[a-zA-Z0-9\s-]*$/)) {
-                        error = 'Only letters, numbers, spaces, and hyphens allowed';
+                        error = 'Chỉ có chữ, số, khoảng trắng và dấu nối được cho phép';
                     }
                     break;
                 case 'year':
                     const currentYear = new Date().getFullYear();
                     if (value && (value < 1900 || value > currentYear + 1)) {
-                        error = `Year must be between 1900 and ${currentYear + 1}`;
+                        error = `Năm phải nằm giữa 1990 và ${currentYear + 1}`;
                     }
                     break;
                 case 'plate':
                     if (!value.match(/^[A-Z0-9\s-]*$/)) {
-                        error = 'Only uppercase letters, numbers, spaces, and hyphens allowed';
+                        error = 'Chỉ chữ viết hoa, số, khoảng trắng và dấu nối được cho phép';
                     }
                     break;
             }
@@ -377,7 +377,7 @@
                     <div class="empty-state">
                         <i class="fas fa-car"></i>
                         <h3>No Vehicles Added</h3>
-                        <p>Click the "Add Vehicle" button to get started</p>
+                        <p>Nhấn "Thêm phương tiện" để bất đầu</p>
                     </div>
                 `;
                 return;
@@ -397,25 +397,25 @@
                                 <span class="status-badge ${serviceStatus.class}">${serviceStatus.text}</span>
                             </div>
                             <div class="vehicle-details">
-                                <p><i class="fas fa-id-card"></i> Plate: ${vehicle.plate}</p>
-                                <p><i class="fas fa-history"></i> Last Service: ${lastService}</p>
-                                <p><i class="fas fa-calendar"></i> Next Service: ${nextService}</p>
-                                <p><i class="fas fa-tachometer-alt"></i> Mileage: ${vehicle.mileage.toLocaleString()} km</p>
+                                <p><i class="fas fa-id-card"></i> Biển số: ${vehicle.plate}</p>
+                                <p><i class="fas fa-history"></i> Dịch vụ gần đây nhất: ${lastService}</p>
+                                <p><i class="fas fa-calendar"></i> Dịch vụ tiếp theo: ${nextService}</p>
+                                <p><i class="fas fa-tachometer-alt"></i> Tổng số dặm đã đi được: ${vehicle.mileage.toLocaleString()} km</p>
                             </div>
-                            ${dueForService ? '<span class="service-alert">Service Due!</span>' : ''}
+                            ${dueForService ? '<span class="service-alert">Dịch vụ đã đến hạn!</span>' : ''}
                         </div>
                         <div class="vehicle-actions">
                             <button onclick="viewServiceHistory(${vehicle.id})" class="action-btn history-btn">
-                                <i class="fas fa-history"></i> History
+                                <i class="fas fa-history"></i> Lịch sử
                             </button>
                             <button onclick="scheduleService(${vehicle.id})" class="action-btn schedule-btn">
-                                <i class="fas fa-calendar-plus"></i> Schedule
+                                <i class="fas fa-calendar-plus"></i> Lịch
                             </button>
                             <button onclick="updateMileage(${vehicle.id})" class="action-btn mileage-btn">
-                                <i class="fas fa-tachometer-alt"></i> Update Mileage
+                                <i class="fas fa-tachometer-alt"></i> Cập nhật số dặm
                             </button>
                             <button onclick="deleteVehicle(${vehicle.id})" class="action-btn delete-btn">
-                                <i class="fas fa-trash"></i> Remove
+                                <i class="fas fa-trash"></i> Xóa
                             </button>
                         </div>
                         <div class="service-recommendations">
@@ -482,7 +482,7 @@
         // Service Status and Recommendations
         function getServiceStatus(vehicle) {
             if (!vehicle.lastService) {
-                return { text: 'Never Serviced', class: 'status-warning' };
+                return { text: 'Không bao giờ được phục vụ', class: 'status-warning' };
             }
 
             const lastService = new Date(vehicle.lastService);
@@ -490,11 +490,11 @@
             const mileageSinceService = vehicle.mileage - (vehicle.lastServiceMileage || 0);
 
             if (monthsSinceService > 12 || mileageSinceService > 20000) {
-                return { text: 'Service Overdue', class: 'status-danger' };
+                return { text: 'Dịch vụ quá hạn', class: 'status-danger' };
             } else if (monthsSinceService > 10 || mileageSinceService > 15000) {
-                return { text: 'Service Due Soon', class: 'status-warning' };
+                return { text: 'Dịch vụ sẽ đến hạn sớm', class: 'status-warning' };
             } else {
-                return { text: 'Service Up to Date', class: 'status-success' };
+                return { text: 'Dịch vụ cập nhật', class: 'status-success' };
             }
         }
 
@@ -629,7 +629,7 @@
             const dayAppointments = getAppointmentsForDate(date);
             
             if (dayAppointments.length === 0) {
-                showNotification('No appointments scheduled for this date');
+                showNotification('Không có cuộc hẹn được đặt lịch trong ngày hôm nay');
                 return;
             }
 
@@ -662,13 +662,13 @@
         }
 
         function cancelAppointment(appointmentId) {
-            if (confirm('Are you sure you want to cancel this appointment?')) {
+            if (confirm('Bạn có chắc chắn muốn hủy cuộc hẹn này không?')) {
                 const index = state.appointments.findIndex(apt => apt.id === appointmentId);
                 if (index !== -1) {
                     state.appointments.splice(index, 1);
                     localStorage.setItem('appointments', JSON.stringify(state.appointments));
                     generateCalendar(state.currentMonth, state.currentYear);
-                    showNotification('Appointment cancelled successfully');
+                    showNotification('Đã hủy cuộc hẹn');
                     document.querySelector('.modal').remove();
                 }
             }
@@ -697,7 +697,7 @@
                         <strong>${formatCurrency(service.cost)}</strong>
                     </div>
                 </div>
-            `).join('') : '<p class="empty-history">No service history available</p>';
+            `).join('') : '<p class="empty-history">Lịch sử phục vụ không có sẵn</p>';
 
             historyModal.innerHTML = `
                 <div class="modal-content">
@@ -741,7 +741,7 @@
                 e.preventDefault();
                 const newMileage = parseInt(document.getElementById('newMileage').value);
                 if (newMileage < vehicle.mileage) {
-                    showNotification('New mileage cannot be less than current mileage', 'error');
+                    showNotification('Tổng số dặm mới không thể nhỏ hơn tổng số dặm hiện tại', 'error');
                     return;
                 }
 
@@ -749,13 +749,13 @@
                 localStorage.setItem('vehicles', JSON.stringify(state.vehicles));
                 displayVehicles();
                 mileageModal.remove();
-                showNotification('Mileage updated successfully');
+                showNotification('Tổng số dặm đã được cập nhật');
                 checkServiceDue(vehicle);
             });
         }
 
         function deleteVehicle(vehicleId) {
-            if (confirm('Are you sure you want to delete this vehicle? This action cannot be undone.')) {
+            if (confirm('Bạn có chắc muốn xóa phương tiện này không? Không thể hoàn tác tác vụ này.')) {
                 const index = state.vehicles.findIndex(v => v.id === vehicleId);
                 if (index !== -1) {
                     state.vehicles.splice(index, 1);
@@ -770,7 +770,7 @@
                     
                     displayVehicles();
                     generateCalendar();
-                    showNotification('Vehicle removed successfully');
+                    showNotification('Đã xóa phương tiện');
                 }
             }
         }
@@ -811,7 +811,7 @@
             );
 
             if (existingAppointment) {
-                showNotification('This time slot is already booked. Please choose another time.', 'error');
+                showNotification('Khung giờ này đã được đặt. Vui lòng chọn khung giờ khác.', 'error');
                 return;
             }
 
@@ -872,7 +872,7 @@
         document.querySelectorAll('.book-service-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 if (state.vehicles.length === 0) {
-                    showNotification('Please add a vehicle first', 'error');
+                    showNotification('Vui lòng thêm phương tiện trước', 'error');
                     return;
                 }
                 const serviceCard = btn.closest('.service-card');
