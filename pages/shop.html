@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Velocity Vault</title>
+    <link rel="stylesheet" href="../styles/shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="../index.html" class="back-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+        <div class="nav-center">
+            <a href="#performance" class="category-filter" data-category="performance">Performance</a>
+            <a href="#exterior" class="category-filter" data-category="exterior">Exterior</a>
+            <a href="#interior" class="category-filter" data-category="interior">Interior</a>
+            <a href="#wheels" class="category-filter" data-category="wheels">Wheels & Tires</a>
+            <a href="#brands" class="category-filter" data-category="brands">Brands</a>
+            <a href="#new" class="category-filter" data-category="new">New Arrivals</a>
+            <a href="#sale" class="sale-link category-filter" data-category="sale">Clearance</a>
+        </div>
+        <div class="nav-right">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search parts...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-icons">
+                <a href="#garage"><i class="fas fa-car"></i></a>
+                <a href="#" id="cartIcon" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="#favorites"><i class="fas fa-heart"></i></a>
+                <a href="#profile"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="shop-container">
+        <aside class="filters-sidebar">
+            <div class="filters-section">
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+                    <div class="price-range">
+                        <div class="range-inputs">
+                            <div class="input-group">
+                                <label for="minPrice">Min Price (₹)</label>
+                                <input type="number" id="minPrice" placeholder="Min" min="0">
+                            </div>
+                            <div class="input-group">
+                                <label for="maxPrice">Max Price (₹)</label>
+                                <input type="number" id="maxPrice" placeholder="Max" min="0">
+                            </div>
+                        </div>
+                        <div class="range-slider">
+                            <div class="slider-track"></div>
+                            <input type="range" id="priceRangeMin" min="0" max="100000" value="0" step="1000">
+                            <input type="range" id="priceRangeMax" min="0" max="100000" value="100000" step="1000">
+                        </div>
+                        <button id="applyPriceFilter" class="filter-btn">Apply Filter</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Categories</h3>
+                    <div class="category-filters">
+                        <label class="filter-label">
+                            <input type="checkbox" value="brakes" checked> Brakes
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="filter-label">
+                            <input type="checkbox" value="exhaust" checked> Exhaust
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="filter-label">
+                            <input type="checkbox" value="suspension" checked> Suspension
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="filter-label">
+                            <input type="checkbox" value="engine" checked> Engine
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Brands</h3>
+                    <div class="brand-filters">
+                        <label class="filter-label">
+                            <input type="checkbox" value="Brembo" checked> Brembo
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="filter-label">
+                            <input type="checkbox" value="Akrapovič" checked> Akrapovič
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="filter-label">
+                            <input type="checkbox" value="HKS" checked> HKS
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="filter-label">
+                            <input type="checkbox" value="Recaro" checked> Recaro
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Vehicle Compatibility</h3>
+                    <div class="compatibility-filters">
+                        <select id="makeFilter" class="filter-select">
+                            <option value="">All Makes</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Lamborghini">Lamborghini</option>
+                            <option value="McLaren">McLaren</option>
+                            <option value="Porsche">Porsche</option>
+                        </select>
+                        <select id="yearFilter" class="filter-select">
+                            <option value="">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="resetFilters" class="reset-btn">
+                    <i class="fas fa-undo"></i> Reset Filters
+                </button>
+            </div>
+        </aside>
+
+        <main class="parts-grid" id="partsGrid">
+            <!-- Products will be dynamically loaded here -->
+        </main>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Shopping Cart</h2>
+                <button class="close-cart"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically loaded here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">Rs. 0</span>
+                </div>
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="featured-brands">
+        <h2>Premium Brands We Carry</h2>
+        <div class="brand-slider">
+            <div class="brand-logo">
+                <img src="https://1000logos.net/wp-content/uploads/2020/03/Brembo-Logo-2001.png" alt="Brembo">
+            </div>
+            <div class="brand-logo">
+                <img src="https://seeklogo.com/images/A/akrapovic-logo-8F0AFD6451-seeklogo.com.png" alt="Akrapovič">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "Carbon Ceramic Brake Kit",
+                brand: "Brembo",
+                price: 149999,
+                image: "../images/products/brake-kit.jpg",
+                category: "brakes",
+                compatibility: ["Ferrari", "Lamborghini"],
+                badge: "Premium",
+                description: "High-performance carbon ceramic brake kit for maximum stopping power"
+            },
+            {
+                id: 2,
+                name: "Titanium Exhaust System",
+                brand: "Akrapovič",
+                price: 199999,
+                image: "../images/products/exhaust.jpg",
+                category: "exhaust",
+                compatibility: ["McLaren", "Porsche"],
+                badge: "New",
+                description: "Lightweight titanium exhaust system for enhanced performance"
+            },
+            // Add more products here
+        ];
+
+        // State Management
+        let state = {
+            filters: {
+                priceRange: { min: 0, max: 100000 },
+                categories: new Set(['brakes', 'exhaust', 'suspension', 'engine']),
+                brands: new Set(['Brembo', 'Akrapovič', 'HKS', 'Recaro']),
+                make: '',
+                year: '',
+                sortBy: 'featured'
+            },
+            cart: JSON.parse(localStorage.getItem('cart')) || []
+        };
+
+        // Filter Functions
+        function applyFilters() {
+            let filteredProducts = products.filter(product => {
+                const priceInRange = product.price >= state.filters.priceRange.min && 
+                                   product.price <= state.filters.priceRange.max;
+                const categoryMatch = state.filters.categories.has(product.category);
+                const brandMatch = state.filters.brands.has(product.brand);
+                const makeMatch = !state.filters.make || product.compatibility.includes(state.filters.make);
+                const yearMatch = !state.filters.year || product.year === state.filters.year;
+
+                return priceInRange && categoryMatch && brandMatch && makeMatch && yearMatch;
+            });
+
+            // Apply sorting
+            switch(state.filters.sortBy) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name-asc':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'name-desc':
+                    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+            }
+
+            displayProducts(filteredProducts);
+            updateProductCount(filteredProducts.length);
+        }
+
+        // Display Functions
+        function displayProducts(products) {
+            const grid = document.getElementById('partsGrid');
+            grid.innerHTML = products.map(product => `
+                <div class="part-card" data-id="${product.id}">
+                    <div class="part-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        <span class="part-badge">${product.badge}</span>
+                    </div>
+                    <div class="part-info">
+                        <h3>${product.name}</h3>
+                        <p class="part-brand">${product.brand}</p>
+                        <div class="compatibility">
+                            <i class="fas fa-car"></i>
+                            <span>${product.compatibility.join(', ')}</span>
+                        </div>
+                        <div class="part-price">
+                            <span class="price">Rs.${product.price.toLocaleString()}</span>
+                            <button class="quick-add" onclick="addToCart(${product.id})">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateProductCount(count) {
+            document.getElementById('productCount').textContent = count;
+        }
+
+        // Cart Functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const cartItem = state.cart.find(item => item.id === productId);
+            if (cartItem) {
+                cartItem.quantity++;
+            } else {
+                state.cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(state.cart));
+            updateCartCount();
+            showNotification(`${product.name} added to cart!`);
+        }
+
+        function updateCartCount() {
+            const count = state.cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = count;
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Event Listeners
+        document.getElementById('applyPriceFilter').addEventListener('click', () => {
+            const min = parseInt(document.getElementById('minPrice').value) || 0;
+            const max = parseInt(document.getElementById('maxPrice').value) || 100000;
+            state.filters.priceRange = { min, max };
+            applyFilters();
+        });
+
+        document.querySelectorAll('.category-filters input').forEach(input => {
+            input.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    state.filters.categories.add(e.target.value);
+                } else {
+                    state.filters.categories.delete(e.target.value);
+                }
+                applyFilters();
+            });
+        });
+
+        document.querySelectorAll('.brand-filters input').forEach(input => {
+            input.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    state.filters.brands.add(e.target.value);
+                } else {
+                    state.filters.brands.delete(e.target.value);
+                }
+                applyFilters();
+            });
+        });
+
+        document.getElementById('makeFilter').addEventListener('change', (e) => {
+            state.filters.make = e.target.value;
+            applyFilters();
+        });
+
+        document.getElementById('yearFilter').addEventListener('change', (e) => {
+            state.filters.year = e.target.value;
+            applyFilters();
+        });
+
+        document.getElementById('sortBy').addEventListener('change', (e) => {
+            state.filters.sortBy = e.target.value;
+            applyFilters();
+        });
+
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            state.filters = {
+                priceRange: { min: 0, max: 100000 },
+                categories: new Set(['brakes', 'exhaust', 'suspension', 'engine']),
+                brands: new Set(['Brembo', 'Akrapovič', 'HKS', 'Recaro']),
+                make: '',
+                year: '',
+                sortBy: 'featured'
+            };
+            
+            // Reset form elements
+            document.getElementById('minPrice').value = '';
+            document.getElementById('maxPrice').value = '';
+            document.getElementById('priceRangeMin').value = 0;
+            document.getElementById('priceRangeMax').value = 100000;
+            document.getElementById('makeFilter').value = '';
+            document.getElementById('yearFilter').value = '';
+            document.getElementById('sortBy').value = 'featured';
+            
+            document.querySelectorAll('.category-filters input, .brand-filters input').forEach(input => {
+                input.checked = true;
+            });
+            
+            applyFilters();
+        });
+
+        // Range Slider Functionality
+        const priceRangeMin = document.getElementById('priceRangeMin');
+        const priceRangeMax = document.getElementById('priceRangeMax');
+        const minPrice = document.getElementById('minPrice');
+        const maxPrice = document.getElementById('maxPrice');
+
+        function updateSlider() {
+            const min = parseInt(priceRangeMin.value);
+            const max = parseInt(priceRangeMax.value);
+            
+            if (min > max) {
+                if (this === priceRangeMin) {
+                    priceRangeMax.value = min;
+                } else {
+                    priceRangeMin.value = max;
+                }
+            }
+            
+            minPrice.value = priceRangeMin.value;
+            maxPrice.value = priceRangeMax.value;
+            
+            const track = document.querySelector('.slider-track');
+            const percent1 = (priceRangeMin.value / priceRangeMin.max) * 100;
+            const percent2 = (priceRangeMax.value / priceRangeMax.max) * 100;
+            track.style.background = `linear-gradient(to right, #ddd ${percent1}%, #ff4d4d ${percent1}%, #ff4d4d ${percent2}%, #ddd ${percent2}%)`;
+        }
+
+        priceRangeMin.addEventListener('input', updateSlider);
+        priceRangeMax.addEventListener('input', updateSlider);
+
+        // Cart Modal
+        const cartModal = document.getElementById('cartModal');
+        const cartBtn = document.querySelector('.cart-icon');
+        const closeModal = document.querySelector('.close-cart');
+        const continueShopping = document.querySelector('.checkout-btn');
+
+        cartBtn.addEventListener('click', () => {
+            updateCartModal();
+            cartModal.classList.add('active');
+        });
+
+        closeModal.addEventListener('click', () => cartModal.classList.remove('active'));
+        continueShopping.addEventListener('click', () => cartModal.classList.remove('active'));
+
+        function updateCartModal() {
+            const cartItems = document.querySelector('.cart-items');
+            if (state.cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+                return;
+            }
+
+            cartItems.innerHTML = state.cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                        <div class="item-price">Rs.${item.price.toLocaleString()}</div>
+                        <div class="item-quantity">
+                            <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            updateCartSummary();
+        }
+
+        function updateCartSummary() {
+            const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal > 0 ? 999 : 0;
+            const total = subtotal + shipping;
+
+            document.querySelector('.cart-total').textContent = `Rs.${total.toLocaleString()}`;
+        }
+
+        function updateQuantity(productId, change) {
+            const item = state.cart.find(item => item.id === productId);
+            if (!item) return;
+
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                localStorage.setItem('cart', JSON.stringify(state.cart));
+                updateCartModal();
+                updateCartCount();
+            }
+        }
+
+        function removeFromCart(productId) {
+            state.cart = state.cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(state.cart));
+            updateCartModal();
+            updateCartCount();
+        }
+
+        // Initialize
+        applyFilters();
+        updateCartCount();
+        updateSlider();
+    </script>
+</body>
+</html> 
