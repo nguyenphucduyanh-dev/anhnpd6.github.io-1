@@ -1,6 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut }
+      from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    
+    const firebaseConfig={
+      apiKey: "API_KEY_CUA_BAN",
+      authDomain: "xxxx.firebaseapp.com",
+      projectId: "xxxx",
+      storageBucket: "xxxx.appspot.com",
+      messagingSenderId: "xxxx",
+      appId: "xxxx"
+    };
+    
+    const app=initializeApp(firebaseConfig);
+    const auth=getAuth();
+  </script>
+  
+  <input id="emailRegister" type="email" placeholder="Email">
+  <input id="passwordRegister" type="password" placeholder="Mật khẩu">
+  <button id="RegisterBtn">Đăng ký</button>
+  
+  <script type="module">
+  import { auth, createUserWithEmailAndPassword } from "./firebase.js";
+    
+  registerBtn.onclick=()=> {
+    const email=emailRegister.value;
+    const password=passwordRegister.value;
+    
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(()=> alert("Đăng ký thành công!"))
+      .catch(err=> alert(err.message);
+  };
+  </script>
+  
+  <input id="emailLogin" type="email" placeholder="Email">
+  <input id="passwordLogin" type="password" placeholder="Mật khẩu">
+  <button id="loginBtn">Đăng nhập</button>
+  
+  <script type="module">
+  import { auth, signInWithEmailAndPassword } from "./firebase.js";
+
+  loginBtn.onclick=()=> {
+    signInWithEmailAndPassword(auth, emaillogin.value, passwordLogin.value)
+      .then(()=> alert("Đăng nhập thành công"))
+      .catch(err=> alert(err.message));
+  };
+  </script>
+
+  <button id="logoutBtn">Đăng xuất</button>
+
+  <script type="module">
+  import { auth, signOut } from "./firebase.js";
+
+  logoutBtn.onclick=()=> signOut(auth);
+  </script>
+
+  import { auth } from "./firebase.js";
+  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  onAuthStateChanged(auth, (user)=> {
+    if (user) {
+      console.log("Đã đăng nhập:', user.email);
+      document.getElementById("loginSection").style.display="none";
+      document.getElementById("userSection").style.display="block";
+    } else {
+      document.getElementById("loginSection").style.display="block";
+      document.getElementById("userSection").style.display="none";
+    }
+  });
+
+  import { auth, onAuthStateChanged } from "./firebase.js";
+
+  onAuthStateChanged(auth, (user)=>
+    if (user) {
+      document.getElementById("guestMenu").style.display="none";
+      document.getElementById("userMenu").style.display="block";
+      document.getElementById("userName").innerText=user.displayName || user.email;
+      document.getElementById("userAvatar").src=user.photoURL || "defaultAvatar.png";
+    } else {
+      document.getElementById("guestMenu").style.display="block";
+      document.getElementById("userMenu").style.display="none";
+    }
+  });
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords"
