@@ -4,4 +4,10 @@
 <img id="profileAvatar" width="100">
 onAuthStateChanged(auth, (user)=> {
   if (user) {
-    
+    document.getElementById("profileEmail").innerText=user.email;
+    document.getElementById("profileName").innerText=user.displayName || "Chưa đặt tên";
+    document.getElementById("profileAvatar").src=user.photoURL || "defaultAvatar.png";
+  } else {
+    window.location="login.html";
+  }
+});
