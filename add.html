@@ -1,0 +1,14 @@
+import { collection, addDoc } from "https://www..gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+addProductBtn.onclick=async()=> {
+  if (!isAdmin) { alert("Chỉ admin mới thực hiện được"); return; }
+  const newProduct= {
+    type: typeAdd.value,
+    id: idAdd.value,
+    name: nameAdd.value,
+    image: imageAdd.value,
+    description: descAdd.value,
+    hidden: false
+  };
+  try {
+    await addDoc(collection(db
