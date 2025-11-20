@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Quản lý Sản phẩm</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>.thumb{width:80px;height:50px;object-fit:cover}</style>
+</head>
+<body>
+<div class="container py-4">
+  <h3>Quản lý danh mục sản phẩm</h3>
+  <form id="productForm" class="row g-2 mb-3">
+    <div class="col-md-2"><input id="pCode" class="form-control" placeholder="Mã"></div>
+    <div class="col-md-3"><input id="pName" class="form-control" placeholder="Tên"></div>
+    <div class="col-md-2"><input id="pType" class="form-control" placeholder="Loại"></div>
+    <div class="col-md-3"><input id="pImage" class="form-control" placeholder="URL hình"></div>
+    <div class="col-md-2"><button class="btn btn-primary w-100">Thêm</button></div>
+    <div class="col-12"><textarea id="pDesc" class="form-control" placeholder="Mô tả"></textarea></div>
+  </form>
+  <table class="table" id="productTable">
+    <thead><tr><th>Loại</th><th>Mã</th><th>Tên</th><th>Hình</th><th>Mô tả</th><th>Hành động</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+<script>
+function getProducts(){ return JSON.parse(localStorage.getItem('products')||'[]'); }
+function saveProducts(p){ localStorage.setItem('products', JSON.stringify(p)); }
+function render(){
+  const tbody=document.querySelector('#productTable tbody'); tbody.innerHTML='';
+  getProducts().forEach((p, i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${p.type}</td><td>${p.code}</td><td>${p.name}</td>
+      <td>${p.image?'<img src="'+p.image+'" class="thumb">':''}</td>
+      <td>${p.desc||''}</td>
+      <td>
+        <button class="btn btn-sm btn-info" onclick="edit(${i})">Sửa</button>
+        <button class="btn btn-sm btn-warning" onclick="hide(${i})">${p.hidden? 'Hiện':'Ẩn'}</button>
+        <button class="btn btn-sm btn-danger" onclick="del(${i})">Xóa</button>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+document.getElementById('productForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const p={ type:document.getElementById('pType').value, code:document.getElementById('pCode').value, name:document.getElementById('pName').value, image:document.getElementById('pImage').value, desc:document.getElementById('pDesc').value, hidden:false };
+  const prods=getProducts(); prods.push(p); saveProducts(prods); render(); this.reset();
+});
+function edit(i){
+  const p=getProducts()[i];
+  document.getElementById('pType').value=p.type; document.getElementById('pCode').value=p.code;
+  document.getElementById('pName').value=p.name; document.getElementById('pImage').value=p.image; document.getElementById('pDesc').value=p.desc;
+  if(confirm('Lưu thay đổi cho sản phẩm hiện đang nhập?')) {
+    const arr=getProducts(); arr[i]={type:document.getElementById('pType').value, code:document.getElementById('pCode').value, name:document.getElementById('pName').value, image:document.getElementById('pImage').value, desc:document.getElementById('pDesc').value, hidden:false}; saveProducts(arr); render();
+  }
+}
+function hide(i){ const a=getProducts(); a[i].hidden=!a[i].hidden; saveProducts(a); render(); }
+function del(i){ if(!confirm('Xóa sản phẩm?')) return; const a=getProducts(); a.splice(i,1); saveProducts(a); render(); }
+render();
+</script>
+</body>
+</html>
