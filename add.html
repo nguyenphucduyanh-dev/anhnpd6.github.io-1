@@ -11,4 +11,10 @@ addProductBtn.onclick=async()=> {
     hidden: false
   };
   try {
-    await addDoc(collection(db
+    await addDoc(collection(db, "products), newProduct);
+    alert("Thêm sản phẩm thành công!");
+    loadProducts();
+  } catch(e) {
+    alert(e.message);
+  }
+};
