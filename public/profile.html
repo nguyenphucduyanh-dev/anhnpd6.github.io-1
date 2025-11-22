@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><title>Hồ sơ</title><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
+<body>
+<div class="container py-4">
+  <h3>Thông tin cá nhân</h3>
+  <div id="info"></div>
+  <button class="btn btn-primary mt-3" onclick="logout()">Đăng xuất</button>
+</div>
+<script>
+const session = JSON.parse(localStorage.getItem('session')||'null');
+if(!session) { alert('Chưa đăng nhập'); location.href='login.html'; }
+document.getElementById('info').innerHTML = `<p>Email: ${session.email}</p><p>Tên: ${session.name}</p>`;
+function logout(){ localStorage.removeItem('session'); location.href='login.html'; }
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Quản lý Đơn hàng</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container py-4">
+  <h3>Quản lý đơn đặt hàng</h3>
+  <div class="row mb-3">
+    <div class="col"><input id="dateFrom" type="date" class="form-control"></div>
+    <div class="col"><input id="dateTo" type="date" class="form-control"></div>
+    <div class="col"><select id="status" class="form-select"><option value="">Tất cả</option><option>mới đặt</option><option>đã xử lý</option><option>đã giao</option><option>hủy</option></select></div>
+    <div class="col-auto"><button class="btn btn-primary" onclick="render()">Tìm</button></div>
+  </div>
+  <table class="table"><thead><tr><th>Mã</th><th>Ngày</th><th>Khách</th><th>Trạng thái</th><th>Hành động</th></tr></thead><tbody id="list"></tbody></table>
+</div>
+<script>
+function getOrders(){ return JSON.parse(localStorage.getItem('orders')||'[]'); }
+function saveOrders(o){ localStorage.setItem('orders', JSON.stringify(o)); }
+function render(){
+  const from=document.getElementById('dateFrom').value, to=document.getElementById('dateTo').value, st=document.getElementById('status').value;
+  const rows=getOrders().filter(o=>{
+    if(st && o.status!==st) return false;
+    if(from && o.date < from) return false;
+    if(to && o.date > to) return false;
+    return true;
+  });
+  const tbody=document.getElementById('list'); tbody.innerHTML='';
+  rows.forEach((o,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${o.code}</td><td>${o.date}</td><td>${o.customer}</td><td>${o.status}</td>
+      <td><button class="btn btn-sm btn-info" onclick="view(${i})">Xem</button>
+      <button class="btn btn-sm btn-primary" onclick="update(${i})">Cập nhật trạng thái</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+function view(i){ alert(JSON.stringify(getOrders()[i], null, 2)); }
+function update(i){
+  const o=getOrders(); const s = prompt('Nhập trạng thái (mới đặt, đã xử lý, đã giao, hủy)', o[i].status);
+  if(s===null) return; o[i].status = s; saveOrders(o); render();
+}
+(function demo(){
+  if(getOrders().length===0){
+    saveOrders([{code:'DH001', date:'2025-10-15', customer:'Nguyễn A', status:'mới đặt'}]);
+  }
+  render();
+})();
+</script>
+</body>
+</html>
