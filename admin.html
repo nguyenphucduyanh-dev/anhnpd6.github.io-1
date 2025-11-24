@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #222;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 12px;
+            margin: 8px 0;
+            background: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background: #555;
+        }
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .logout {
+            background: #c0392b !important;
+        }
+    </style>
+
+    <script>
+        function checkLogin() {
+            // Kiểm tra nếu chưa đăng nhập → quay lại trang login
+            if (!sessionStorage.getItem("adminLogged")) {
+                window.location.href = "admin_login.html";
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem("adminLogged");
+            window.location.href = "admin_login.html";
+        }
+
+        window.onload = checkLogin;
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>ADMIN PANEL</h2>
+        <a href="#">Quản lý người dùng</a>
+        <a href="#">Quản lý sản phẩm</a>
+        <a href="#">Quản lý đơn hàng</a>
+        <a href="#">Thống kê</a>
+        <a href="#" class="logout" onclick="logout()">Đăng xuất</a>
+    </div>
+
+    <div class="content">
+        <h1>Chào mừng Admin!</h1>
+        <div class="card">
+            <h3>Thông báo hệ thống</h3>
+            <p>Đây là giao diện quản trị website bán đồ ăn.</p>
+        </div>
+    </div>
+</body>
+</html>
