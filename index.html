@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="header-top-left">
                     <ul class="header-top-list">
-                        <li><a href=""><i class="fa-regular fa-phone"></i> 0123 456 789 (miễn phí)</a></li>
+                        <li><a href=""><i class="fa-regular fa-phone"></i> 0906662076 (miễn phí)</a></li>
                         <li><a href=""><i class="fa-light fa-location-dot"></i> Xem vị trí cửa hàng</a></li>
                     </ul>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="header-middle-center">
                     <form action="" class="form-search">
                         <span class="search-btn"><i class="fa-light fa-magnifying-glass"></i></span>
-                        <input type="text" class="form-search-input" placeholder="Tìm kiếm món ăn..."
+                        <input type="text" class="form-search-input" placeholder="Tìm kiếm món ăn mà bạn muốn..."
                             oninput="searchProducts()">
                         <button class="filter-btn"><i class="fa-light fa-filter-list"></i><span>Lọc</span></button>
                     </form>
@@ -87,12 +87,12 @@
         <div class="container">
             <ul class="menu-list">
                 <li class="menu-list-item"><a href="" class="menu-link">Trang chủ</a></li>
-                <li class="menu-list-item" onclick="showCategory('Món chay')"><a href="javascript:;" class="menu-link">Món chay</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món chay')"><a href="javascript:;" class="menu-link">Món chay (chỉ dành cho người ăn chay)</a></li>
                 <li class="menu-list-item" onclick="showCategory('Món mặn')"><a href="javascript:;" class="menu-link">Món mặn</a></li>
-                <li class="menu-list-item" onclick="showCategory('Món lẩu')"><a href="javascript:;" class="menu-link">Món lẩu</a></li>
-                <li class="menu-list-item" onclick="showCategory('Món ăn vặt')"><a href="javascript:;" class="menu-link">Món ăn vặt</a></li>
-                <li class="menu-list-item" onclick="showCategory('Món tráng miệng')"><a href="javascript:;" class="menu-link">Món tráng miệng</a></li>
-                <li class="menu-list-item" onclick="showCategory('Nước uống')"><a href="javascript:;" class="menu-link">Nước uống</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món lẩu')"><a href="javascript:;" class="menu-link">Món lẩu (có thể thưởng thức nếu bạn giàu)</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món ăn vặt')"><a href="javascript:;" class="menu-link">Món ăn vặt (phụ)</a></li>
+                <li class="menu-list-item" onclick="showCategory('Món tráng miệng')"><a href="javascript:;" class="menu-link">Món tráng miệng (gọi thêm)</a></li>
+                <li class="menu-list-item" onclick="showCategory('Nước uống')"><a href="javascript:;" class="menu-link">Nước uống (các loài trà, sữa, bia, nước ngọt có ga)</a></li>
                 <li class="menu-list-item" onclick="showCategory('Món khác')"><a href="javascript:;" class="menu-link">Món khác</a></li>
             </ul>
         </div>
@@ -141,8 +141,8 @@
                         <i class="fa-light fa-person-carry-box"></i>
                     </div>
                     <div class="home-service-item-content">
-                        <h4 class="home-service-item-content-h">GIAO HÀNG NHANH</h4>
-                        <p class="home-service-item-content-desc">Cho tất cả đơn hàng</p>
+                        <h4 class="home-service-item-content-h">DỊCH VỤ GIAO HÀNG NHANH</h4>
+                        <p class="home-service-item-content-desc">Áp dụng cho tất cả đơn hàng</p>
                     </div>
                 </div>
                 <div class="home-service-item">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="home-service-item-content">
                         <h4 class="home-service-item-content-h">SẢN PHẨM AN TOÀN</h4>
-                        <p class="home-service-item-content-desc">Cam kết chất lượng</p>
+                        <p class="home-service-item-content-desc">Cam kết chất lượng, đảm bảo không làm quý khách thất vọng</p>
                     </div>
                 </div>
                 <div class="home-service-item">
@@ -210,7 +210,7 @@
                             <div class="form-group">
                                 <label for="infoaddress" class="form-label">Địa chỉ</label>
                                 <input class="form-control" type="text" name="infoaddress" id="infoaddress"
-                                    placeholder="Thêm địa chỉ giao hàng của bạn">
+                                    placeholder="Thêm địa chỉ giao hàng">
                             </div>
                         </form>
                     </div>
@@ -242,7 +242,7 @@
                                     class="fa-regular fa-floppy-disk"></i> Lưu thay đổi</button>
                         </div>
                         <div>
-                            <button id="save-password" onclick="changePassword()"><i class="fa-regular fa-key"></i> Đổi
+                            <button id="save-password" onclick="changePassword()"><i class="fa-regular fa-key"></i> Thay đổi
                                 mật khẩu</button>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
             <div class="main-account">
                 <div class="main-account-header">
                     <h3>Quản lý đơn hàng của bạn</h3>
-                    <p>Xem chi tiết, trạng thái của những đơn hàng đã đặt.</p>
+                    <p>Xem chi tiết, trạng thái hiện tại của những đơn hàng mà bạn đã đặt.</p>
                 </div>
                 <div class="main-account-body">
                     <div class="order-history-section">
@@ -279,14 +279,14 @@
                         tôi </p>
                     <form action="" class="signup-form">
                         <div class="form-group">
-                            <label for="fullname" class="form-label">Tên đầy đủ</label>
-                            <input id="fullname" name="fullname" type="text" placeholder="VD: Nhật Sinh"
+                            <label for="fullname" class="form-label">Họ tên đầy đủ</label>
+                            <input id="fullname" name="fullname" type="text" placeholder="VD: Nguyễn Văn A"
                                 class="form-control">
                             <span class="form-message-name form-message"></span>
                         </div>
                         <div class="form-group">
                             <label for="phone" class="form-label">Số điện thoại</label>
-                            <input id="phone" name="phone" type="text" placeholder="Nhập số điện thoại"
+                            <input id="phone" name="phone" type="text" placeholder="Nhập số điện thoại của bạn"
                                 class="form-control">
                             <span class="form-message-phone form-message"></span>
                         </div>
@@ -310,12 +310,12 @@
                         </div>
                         <button class="form-submit" id="signup-button">Đăng ký</button>
                     </form>
-                    <p class="change-login">Bạn đã có tài khoản ? <a href="javascript:;" class="login-link">Đăng nhập
+                    <p class="change-login">Bạn đã có tài khoản? <a href="javascript:;" class="login-link">Đăng nhập
                             ngay</a></p>
                 </div>
                 <div class="form-content login">
                     <h3 class="form-title">Đăng nhập tài khoản</h3>
-                    <p class="form-description">Đăng nhập thành viên để mua hàng và nhận những ưu đãi đặc biệt từ chúng
+                    <p class="form-description">Đăng ký thành viên để mua hàng và nhận ưu đãi đặc biệt mà chỉ thành viên mới có từ chúng
                         tôi</p>
                     <form action="" class="login-form">
                         <div class="form-group">
@@ -401,7 +401,7 @@
                     <div class="widget-row-col-1">
                         <h3 class="widget-title">Về chúng tôi</h3>
                         <div class="widget-row-col-content">
-                            <p>Vy Food là thương hiệu được thành lập vào năm 2022 với tiêu chí đặt chất lượng sản phẩm lên hàng đầu.</p>
+                            <p>Duy Anh Food là thương hiệu được thành lập vào năm 2022 với tiêu chí đặt chất lượng sản phẩm lên hàng đầu.</p>
                         </div>
                         <div class="widget-social">
                             <div class="widget-social-item">
@@ -504,7 +504,7 @@
                                     <i class="fa-regular fa-location-dot"></i>
                                 </div>
                                 <div class="contact-content">
-                                    <span>273 An Dương Vương, Phường 3, Quận 5, TP Hồ Chí Minh</span>
+                                    <span>162/18/16 Bùi Thị Xuân, Phường Bến Thành, Quận 1, TP Hồ Chí Minh</span>
                                 </div>
                             </div>
                             <div class="contact-item">
@@ -522,7 +522,7 @@
                                     <i class="fa-regular fa-envelope"></i>
                                 </div>
                                 <div class="contact-content conatct-item-email">
-                                    <span>abc@domain.com</span><br />
+                                    <span>anhnpd6@gmail.com</span><br />
                                     <span>infoabc@domain.com</span>
                                 </div>
                             </div>
@@ -535,7 +535,7 @@
     <div class="copyright-wrap">
         <div class="container">
             <div class="copyright-content">
-                <p>Copyright 2022 Vy Food. All Rights Reserved.</p>
+                <p>Copyright 2022 Duy Anh Food. All Rights Reserved.</p>
             </div>
         </div>
     </div>
@@ -584,7 +584,7 @@
                             </div>
                             <div class="delivery-time">
                                 <input type="radio" name="giaongay" id="deliverytime" class="radio">
-                                <label for="deliverytime">Giao vào giờ</label>
+                                <label for="deliverytime">Chọn giờ giao hàng</label>
                                 <select class="choise-time">
                                     <option data-hours="08" value="08:00" selected="selected">08:00 - 09:00</option>
 
@@ -621,7 +621,7 @@
                             <p class="checkout-content-label">Lấy hàng tại chi nhánh</p>
                             <div class="delivery-time">
                                 <input type="radio" name="chinhanh" id="chinhanh-1" class="radio">
-                                <label for="chinhanh-1">273 An Dương Vương, Phường 3, Quận 5</label>
+                                <label for="chinhanh-1">162/18/16 Bùi Thị Xuân, Phường Bến Thành, Quận 1</label>
                             </div>
                             <div class="delivery-time">
                                 <input type="radio" name="chinhanh" id="chinhanh-2" class="radio">
@@ -669,7 +669,7 @@
                     <div class="total-bill-order">
                     </div>
                     <div class="policy-note">
-                        Bằng việc bấm vào nút “Đặt hàng”, tôi đồng ý với
+                        Sau khi click vào nút “Đặt hàng”, tôi đồng ý với
                         <a href="#" target="_blank">chính sách hoạt động</a>
                         của chúng tôi.
                     </div>
